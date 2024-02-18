@@ -54,4 +54,4 @@ Thumbs.db
 # LOGS
 /logs
 
-dev.db
+/prisma/dev.db

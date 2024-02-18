@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,6 +19,10 @@
   },
   "homepage": "https://github.com/adrian-parra/WorkOrdersBack#readme",
   "devDependencies": {
-    "prisma": "^5.9.1"
+    "prisma": "^5.9.1",
+    "standart": "^6.1.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
   }
 }
