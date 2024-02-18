@@ -1,0 +1,34 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+model usuarios {
+  id              Int             @id @default(autoincrement())
+  //UUID          String
+  nombre_usuario  String
+  password        String
+  nombre_completo String
+  nivel_autoridad Int
+  autoridad       nivel_autoridad   @relation(fields: [nivel_autoridad], references: [id])
+  direccion       String
+  telefono        String
+  token           String
+  estatus         Boolean       @default(true)
+  created_at      DateTime      @default(now())
+  updated_at      DateTime      @default(now()) @updatedAt
+}
+
+model nivel_autoridad {
+  id                 Int        @id @default(autoincrement())
+  nivel_autoridad    Int
+  concepto           String
+  rol_encriptado     String?
+  usuarios           usuarios[] 
+}
