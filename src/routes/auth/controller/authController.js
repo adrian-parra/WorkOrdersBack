@@ -42,7 +42,8 @@ export const handleLogin = async (req, res) => {
     const accessToken = jwt.sign(
       { username: user.nombre_usuario, access_rol: user.autoridad.nivel_autoridad },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: '60s' }
+      // { expiresIn: '60s' } // ! PRODUCCIÓN
+       { expiresIn: '1d' } // ! DESARROLLO PARA REVISION
     )
     const refreshToken = jwt.sign(
       { username: user.nombre_usuario, access_rol: user.autoridad.nivel_autoridad },
@@ -56,7 +57,7 @@ export const handleLogin = async (req, res) => {
   // ! PRODUCCIÓN
   // res.cookie('jwt', refreshToken, { httpOnly: true, sameSite: 'None', secure: true, maxAge: 24 * 60 * 60 * 1000 })
   // ! DESARROLLO
-    res.cookie('token', refreshToken, { maxAge: 24 * 60 * 60 * 1000 })
+    res.cookie('jwt', refreshToken, { maxAge: 24 * 60 * 60 * 1000 })
     const data = {
       token: accessToken,
       rol: user.autoridad.nivel_autoridad,
