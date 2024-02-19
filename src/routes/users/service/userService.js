@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import bcrypt from 'bcrypt'
 
 const prisma = new PrismaClient()
 
@@ -15,6 +16,7 @@ export const getUserByIdService = async (id) => {
 }
 
 export const createUserService = async (payload) => {
+  payload.password = await bcrypt.hash(payload.password, 10)
   const createUser = prisma.usuarios.create(
         {data: payload}
     )
